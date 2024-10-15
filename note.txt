@@ -1,0 +1,1 @@
+npm i prompt-sync is used to get user input in terminal because js doesn't have built in user input prompt
