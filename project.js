@@ -66,10 +66,37 @@ const spin = () => {
       symbols.push(symbol);
     }
   }
-};
-// END of functions -----------------------------------------------------------------------------
 
+  const reels = [];
+  for (let i = 0; i < COLS; i++) {
+    reels.push([]);
+    const reelSymbol = [...symbols];
+    for (let j = 0; j < ROWS; j++) {
+      const randomIndex = Math.floor(Math.random() * reelSymbol.length);
+      const selectedSymbols = reelSymbol[randomIndex];
+      reels[i].push(selectedSymbols);
+      reelSymbol.slice(randomIndex, 1);
+    }
+  }
+  return reels;
+};
+
+const transpose = (reels) => {
+  const transposed = [];
+
+  for (let i = 0; i < ROWS; i++) {
+    transposed.push([]);
+    for (let j = 0; j < COLS; j++) {
+      transposed[i].push(reels[j][i]);
+    }
+  }
+  return transposed;
+};
+
+const printRows = () => {};
+// END of functions -----------------------------------------------------------------------------
+reels = spin();
 let balance = getDeposit();
 const numberOfLines = getNumberOfLines();
 const betAmount = getBet(balance, numberOfLines);
-console.log(betAmount);
+const transposedReels = transpose(reels);
